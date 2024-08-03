@@ -59,12 +59,14 @@ allKeys.forEach((keys) => {
           lastChar === "-" ||
           lastChar === "*" ||
           lastChar === "/" ||
-          keys === "%") &&
+          keys === "%" ||
+          keys === ".") &&
         (keys === "+" ||
           keys === "-" ||
           keys === "*" ||
           keys === "/" ||
-          keys === "%")
+          keys === "%" ||
+          keys === ".")
       ) {
         displayValue.innerHTML = displayValue.innerHTML.slice(0, -1) + keys;
       } else {
