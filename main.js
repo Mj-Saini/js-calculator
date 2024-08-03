@@ -5,7 +5,7 @@ let displayValue = document.createElement("p");
 let keyParent = document.createElement("div");
 
 let allKeys = [
-  "ac",
+  "x",
   "ce",
   "*",
   "/",
@@ -33,8 +33,16 @@ allKeys.forEach((keys) => {
   keyParent.append(newKey);
 
   newKey.addEventListener("click", () => {
+    let printOne = displayValue.innerHTML.slice(-1);
     if (keys === "ce") {
       displayValue.innerHTML = "";
+    } else if (
+      displayValue.innerHTML === "" &&
+      (keys === "+" || keys === "*" || keys === "/" || keys === "%")
+    ) {
+      displayValue.innerHTML = "";
+    } else if (keys === "x") {
+      displayValue.innerHTML = displayValue.innerHTML.slice(0, -1);
     } else if (keys === "=") {
       if (displayValue.innerHTML == "") {
         displayValue.innerHTML = "";
@@ -45,7 +53,23 @@ allKeys.forEach((keys) => {
     } else if (keys === "ac") {
       displayValue.innerHTML = "";
     } else {
-      displayValue.innerHTML += keys;
+      let lastChar = displayValue.innerHTML.slice(-1);
+      if (
+        (lastChar === "+" ||
+          lastChar === "-" ||
+          lastChar === "*" ||
+          lastChar === "/" ||
+          keys === "%") &&
+        (keys === "+" ||
+          keys === "-" ||
+          keys === "*" ||
+          keys === "/" ||
+          keys === "%")
+      ) {
+        displayValue.innerHTML = displayValue.innerHTML.slice(0, -1) + keys;
+      } else {
+        displayValue.innerHTML += keys;
+      }
     }
   });
 
